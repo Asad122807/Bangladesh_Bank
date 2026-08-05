@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asad.CurrencyReportController">
+    <children>
+        <Label layoutX="110.0" layoutY="20.0" text="Currency Circulation &amp; Cash Supply Report">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+
+        <Button layoutX="230.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleLoadReport" prefHeight="25.0" prefWidth="140.0" text="Load Report Data" />
+
+        <!-- Form Fields for Specific Variables -->
+        <Label layoutX="140.0" layoutY="125.0" text="Report ID:">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="reportIdField" editable="false" layoutX="280.0" layoutY="120.0" promptText="Waiting for data..." />
+
+        <Label layoutX="140.0" layoutY="165.0" text="Currency Issue (M):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="currencyIssueField" editable="false" layoutX="280.0" layoutY="160.0" promptText="Waiting for data..." />
+
+        <Label layoutX="140.0" layoutY="205.0" text="Damaged Notes (M):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="damagedNotesField" editable="false" layoutX="280.0" layoutY="200.0" promptText="Waiting for data..." />
+
+        <Label layoutX="140.0" layoutY="245.0" text="Vault Balance (M):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="vaultBalanceField" editable="false" layoutX="280.0" layoutY="240.0" promptText="Waiting for data..." />
+
+        <Label layoutX="140.0" layoutY="285.0" text="Cash Demand:">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="cashDemandField" editable="false" layoutX="280.0" layoutY="280.0" promptText="Waiting for data..." />
+
+        <Button layoutX="175.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleUpdateSchedule" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #0066cc;" text="Update  &amp; Notify Offices" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
