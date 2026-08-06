@@ -6,93 +6,73 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.text.Text;
+
 import java.io.IOException;
+import java.net.URL;
 
 public class LoginController {
 
-    // Matches the fx:id="textfield" in your FXML
     @FXML
-    private TextField textfield;
+    private TextField idField;
 
-    // Matches the fx:id="passwordf" in your FXML
     @FXML
-    private PasswordField passwordf;
+    private PasswordField passwordField;
 
-    // Matches the fx:id="loginb" in your FXML
-    @FXML
-    private Button loginb;
-    @FXML
-    private Text textfield1;
-    @FXML
-    private Text textfield11;
-
-    // This method is triggered when the "log in" button is clicked
     @FXML
     void loginbutton(ActionEvent event) {
-        // 1. Get the text inputted by the user
-        String id = textfield.getText();
-        String password = passwordf.getText();
-
-        // 2. Validate the ID (Based on your PDF: must be 4 or 7 digits)
-        if (!id.matches("\\d{4}") && !id.matches("\\d{7}")) {
-            showAlert(Alert.AlertType.WARNING, "Invalid ID", "Please enter a valid 4 or 7 digit ID.");
+        if (idField == null || passwordField == null) {
+            System.err.println("Error: UI components not linked. Check fx:id in FXML.");
             return;
         }
 
-        // 3. Check credentials and switch scenes
-        try {
-            // --- REPLACE these dummy credentials with your actual logic ---
-            if (id.equals("1234") && password.equals("12345")) {
+        String id = idField.getText().trim();
+        String password = passwordField.getText().trim();
 
-                // Example: Switching to the Governor scene in the Adnan folder
-                switchScene(event, "Adnan/Governor.fxml", "Governor Dashboard");
+        // Debug prints to verify what input JavaFX receives
+        System.out.println("Attempting login -> ID: '" + id + "', Password: '" + password + "'");
 
-            } else if (id.equals("2345") && password.equals("12345")) {
-
-                // Example: Switching to the Deputy Governor scene
-                switchScene(event, "Adnan/DeputyGovernor.fxml", "Deputy Governor Dashboard");
-
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Login Failed", "Incorrect ID or Password.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Loading Error", "Could not load the next scene.");
+        // Role-based login logic
+        if (id.equals("1234") && password.equals("1234")) {
+            System.out.println("Success: Logging in as Governor...");
+            switchScene(event, "Governor.fxml", "Governor Dashboard");
+        } else if (id.equals("5678") && password.equals("5678")) {
+            System.out.println("Success: Logging in as Deputy Governor...");
+            switchScene(event, "DeputyGovernor.fxml", "Deputy Governor Dashboard");
+        } else {
+            System.out.println("Error: Invalid Credentials.");
         }
     }
 
-    /**
-     * Helper method to switch scenes.
-     */
-    private void switchScene(ActionEvent event, String fxmlFileName, String title) throws IOException {
-        // Load the new FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
-        Parent root = loader.load();
+    private void switchScene(ActionEvent event, String fxmlFile, String title) {
+        String resourcePath = "/com/summer26/section3.group29.simulatingoperationsofbangladeshbank/Asad/" + fxmlFile;
+        URL fxmlUrl = getClass().getResource(resourcePath);
 
-        // Get the current window (stage) from the button click event
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Fallback check if path uses slashes instead of dots
+        if (fxmlUrl == null) {
+            resourcePath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asad/" + fxmlFile;
+            fxmlUrl = getClass().getResource(resourcePath);
+        }
 
-        // Set the new scene
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle(title);
-        stage.show();
-    }
+        if (fxmlUrl == null) {
+            System.err.println("Error: Could not locate FXML file: " + fxmlFile);
+            return;
+        }
 
-    /**
-     * Helper method to show pop-up alerts.
-     */
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading screen: " + fxmlFile);
+            e.printStackTrace();
+        }
     }
 }

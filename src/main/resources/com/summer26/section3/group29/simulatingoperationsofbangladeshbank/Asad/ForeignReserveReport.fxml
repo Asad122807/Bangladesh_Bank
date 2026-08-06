@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asad.ForeignReserveReportController">
+    <children>
+        <!-- Title -->
+        <Label layoutX="145.0" layoutY="20.0" text="Foreign Exchange Reserve Report">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
 
+        <!-- Load Data Button -->
+        <Button layoutX="230.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleLoadReport" prefHeight="25.0" prefWidth="140.0" text="Load Reserve Data" />
+
+        <!-- Form Fields for Reserve Data -->
+        <Label layoutX="120.0" layoutY="125.0" text="Report ID / Date:">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="reportIdField" editable="false" layoutX="280.0" layoutY="120.0" prefWidth="180.0" promptText="Waiting for data..." />
+
+        <Label layoutX="120.0" layoutY="165.0" text="Total Reserves (USD Bn):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="totalReserveField" editable="false" layoutX="280.0" layoutY="160.0" prefWidth="180.0" promptText="Waiting for data..." />
+
+        <Label layoutX="120.0" layoutY="205.0" text="Gold Reserves (USD Bn):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="goldReserveField" editable="false" layoutX="280.0" layoutY="200.0" prefWidth="180.0" promptText="Waiting for data..." />
+
+        <Label layoutX="120.0" layoutY="245.0" text="Foreign Currency (USD Bn):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="foreignCurrencyField" editable="false" layoutX="280.0" layoutY="240.0" prefWidth="180.0" promptText="Waiting for data..." />
+
+        <Label layoutX="120.0" layoutY="285.0" text="Import Cover (Months):">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="importCoverField" editable="false" layoutX="280.0" layoutY="280.0" prefWidth="180.0" promptText="Waiting for data..." />
+
+        <!-- Action Buttons -->
+        <Button layoutX="185.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleAcknowledgeReport" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #008000;" text="Save Report" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Button>
+
+        <!-- Back Button -->
+        <Button layoutX="485.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="60.0" text="Back" textFill="#280303" />
+    </children>
 </AnchorPane>

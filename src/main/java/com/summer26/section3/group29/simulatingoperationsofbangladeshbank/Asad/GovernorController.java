@@ -11,39 +11,39 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class DeputyGovernorController {
+public class GovernorController {
 
     @FXML
-    void handleCurrencyReport(ActionEvent event) {
-        navigateToScreen(event, "CurrencyReport.fxml", "Currency Circulation Report");
+    void handleMonetaryPolicy(ActionEvent event) {
+        navigateToScreen(event, "MonetaryPolicy.fxml", "Monetary Policy Management");
     }
 
     @FXML
-    void handleInspection(ActionEvent event) {
-        navigateToScreen(event, "Inspection.fxml", "Bank Inspection Report");
+    void handleForeignReserveReport(ActionEvent event) {
+        navigateToScreen(event, "ForeignReserveReport.fxml", "Foreign Exchange Reserve Report");
     }
 
     @FXML
-    void handleForeignExchangeReport(ActionEvent event) {
-        navigateToScreen(event, "ForeignExchangeReport.fxml", "Foreign Exchange Report");
+    void handleLiquiditySupportRequest(ActionEvent event) {
+        navigateToScreen(event, "LiquiditySupportRequest.fxml", "Emergency Liquidity Support Request");
     }
+
+    @FXML
+    void handleDepartmentTask(ActionEvent event) {
+        navigateToScreen(event, "DepartmentTask.fxml", "Department Task Assignment");
+    }
+
 
     @FXML
     void handleLogout(ActionEvent event) {
-        System.out.println("System: Deputy Governor logging out...");
+        System.out.println("System: Governor logging out...");
 
-        // Absolute path to the login FXML in the parent resources directory
+        // Navigates back to the root login view (hello-view.fxml)
         String loginPath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/hello-view.fxml";
         URL fxmlUrl = getClass().getResource(loginPath);
 
-        // Fallback check if your login file is named Login.fxml
         if (fxmlUrl == null) {
-            loginPath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Login.fxml";
-            fxmlUrl = getClass().getResource(loginPath);
-        }
-
-        if (fxmlUrl == null) {
-            System.err.println("Error: Could not locate login FXML file in resources.");
+            System.err.println("Error: Could not locate login FXML file at: " + loginPath);
             return;
         }
 
@@ -62,8 +62,8 @@ public class DeputyGovernorController {
         }
     }
 
+
     private void navigateToScreen(ActionEvent event, String fxmlFile, String title) {
-        // Loads dashboard task views from inside the Asad folder
         String path = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asad/" + fxmlFile;
         URL fxmlUrl = getClass().getResource(path);
 
