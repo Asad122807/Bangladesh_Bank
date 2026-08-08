@@ -38,13 +38,13 @@ public class PaymentSystemsOfficerDashboardController {
 
     @FXML
     private void handleDiscrepancyAction(ActionEvent event) {
-        // Matches DisputeResolution.fxml in resources/Asrar/
+
         switchScene(event, "DisputeResolution.fxml", "Discrepancy Resolution");
     }
 
     @FXML
     private void handleDowntimeAction(ActionEvent event) {
-        // Matches DowntimeMonitoring.fxml in resources/Asrar/
+
         switchScene(event, "DowntimeMonitoring.fxml", "Downtime Monitoring");
     }
 

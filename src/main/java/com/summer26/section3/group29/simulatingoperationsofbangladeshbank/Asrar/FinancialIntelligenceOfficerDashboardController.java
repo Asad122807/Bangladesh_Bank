@@ -23,19 +23,19 @@ public class FinancialIntelligenceOfficerDashboardController {
 
     @FXML
     private void handleStrAction(ActionEvent event) {
-        // Changed "StrReview.fxml" -> "StrReview.fxml"
+
         switchScene(event, "StrReview.fxml", "Review STR Reports");
     }
 
     @FXML
     private void handleAmlAlertsAction(ActionEvent event) {
-        // Changed "AmlAlerts.fxml" -> "AmlAlerts.fxml"
+
         switchScene(event, "AmlAlerts.fxml", "Investigate AML Alerts");
     }
 
     @FXML
     private void handleFraudReportsAction(ActionEvent event) {
-        // Changed "FraudReports.fxml" -> "FraudReports.fxml"
+
         switchScene(event, "FraudReports.fxml", "Fraud Detection Reports");
     }
 
