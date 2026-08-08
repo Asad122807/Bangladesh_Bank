@@ -31,33 +31,44 @@ public class LoginController {
         String id = idField.getText().trim();
         String password = passwordField.getText().trim();
 
-        // Debug prints to verify what input JavaFX receives
         System.out.println("Attempting login -> ID: '" + id + "', Password: '" + password + "'");
 
         // Role-based login logic
         if (id.equals("1234") && password.equals("1234")) {
             System.out.println("Success: Logging in as Governor...");
-            switchScene(event, "Governor.fxml", "Governor Dashboard");
+            switchScene(event, "Asad", "Governor.fxml", "Governor Dashboard");
+
         } else if (id.equals("5678") && password.equals("5678")) {
             System.out.println("Success: Logging in as Deputy Governor...");
-            switchScene(event, "DeputyGovernor.fxml", "Deputy Governor Dashboard");
+            switchScene(event, "Asad", "DeputyGovernor.fxml", "Deputy Governor Dashboard");
+
+            // User 7: Payment Systems Officer
+        } else if (id.equals("7777") && password.equals("7777")) {
+            System.out.println("Success: Logging in as Payment Systems Officer...");
+            switchScene(event, "Asrar", "PaymentSystemsOfficerDashboard.fxml", "Payment Systems Officer Dashboard");
+
+            // User 8: Financial Intelligence Officer
+        } else if (id.equals("8888") && password.equals("8888")) {
+            System.out.println("Success: Logging in as Financial Intelligence Officer...");
+            switchScene(event, "Asrar", "FinancialIntelligenceOfficerDashboard.fxml", "Financial Intelligence Officer Dashboard");
+
         } else {
             System.out.println("Error: Invalid Credentials.");
         }
     }
 
-    private void switchScene(ActionEvent event, String fxmlFile, String title) {
-        String resourcePath = "/com/summer26/section3.group29.simulatingoperationsofbangladeshbank/Asad/" + fxmlFile;
+    private void switchScene(ActionEvent event, String subPackage, String fxmlFile, String title) {
+        String resourcePath = "/com/summer26/section3.group29.simulatingoperationsofbangladeshbank/" + subPackage + "/" + fxmlFile;
         URL fxmlUrl = getClass().getResource(resourcePath);
 
-        // Fallback check if path uses slashes instead of dots
+        // Fallback check if path uses slashes instead of dots in package path
         if (fxmlUrl == null) {
-            resourcePath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asad/" + fxmlFile;
+            resourcePath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/" + subPackage + "/" + fxmlFile;
             fxmlUrl = getClass().getResource(resourcePath);
         }
 
         if (fxmlUrl == null) {
-            System.err.println("Error: Could not locate FXML file: " + fxmlFile);
+            System.err.println("Error: Could not locate FXML file: " + fxmlFile + " in package: " + subPackage);
             return;
         }
 
