@@ -3,128 +3,41 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.FinancialIntelligenceOfficerDashboardController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.FinancialIntelligenceOfficerDashboardController">
     <children>
-
-        <!-- Dashboard Title Header -->
-        <Label layoutX="30.0" layoutY="20.0" text="Financial Intelligence Officer Dashboard">
+        <!-- Title Label -->
+        <Label layoutX="80.0" layoutY="40.0" text="Financial Intelligence Officer Dashboard">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="22.0" />
             </font>
         </Label>
 
-        <Label fx:id="welcomeLabel" layoutX="30.0" layoutY="55.0" text="Welcome back, Officer!" textFill="#555555">
+        <!-- Subtitle Label -->
+        <Label layoutX="207.0" layoutY="80.0" text="Select a task module to manage:" textFill="#555555">
             <font>
-                <Font size="14.0" />
+                <Font size="13.0" />
             </font>
         </Label>
 
-        <Button fx:id="logoutButton" layoutX="680.0" layoutY="25.0" onAction="#handleLogoutAction" prefWidth="90.0" style="-fx-background-color: #DC2626;" text="Logout" textFill="WHITE" />
-
-        <Line endX="740.0" layoutX="30.0" layoutY="90.0" stroke="#CCCCCC" />
-
-        <!-- Section Title: Intelligence Operations -->
-        <Label layoutX="30.0" layoutY="105.0" text="Intelligence Operations Navigation">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font>
-        </Label>
-
-        <!-- Navigation Grid Buttons -->
-        <Button fx:id="strButton" layoutX="30.0" layoutY="140.0" onAction="#handleStrAction" prefHeight="65.0" prefWidth="230.0" style="-fx-background-color: #2563EB;" text="Review STR Reports" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
-
-        <Button fx:id="amlAlertsButton" layoutX="285.0" layoutY="140.0" onAction="#handleAmlAlertsAction" prefHeight="65.0" prefWidth="230.0" style="-fx-background-color: #7C3AED;" text="Investigate AML Alerts" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
-
-        <Button fx:id="fraudReportsButton" layoutX="540.0" layoutY="140.0" onAction="#handleFraudReportsAction" prefHeight="65.0" prefWidth="230.0" style="-fx-background-color: #D97706;" text="Fraud Detection Reports" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
-
-        <Button fx:id="investigationCasesButton" layoutX="30.0" layoutY="220.0" onAction="#handleInvestigationCasesAction" prefHeight="65.0" prefWidth="230.0" style="-fx-background-color: #059669;" text="Manage Investigation Cases" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
-
-        <Button fx:id="riskProfilesButton" layoutX="285.0" layoutY="220.0" onAction="#handleRiskProfilesAction" prefHeight="65.0" prefWidth="230.0" style="-fx-background-color: #4F46E5;" text="Customer Risk Profiles" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
-
-        <Line endX="740.0" layoutX="30.0" layoutY="315.0" stroke="#CCCCCC" />
-
-        <!-- Section Title: Quick Stats -->
-        <Label layoutX="30.0" layoutY="330.0" text="Intelligence Quick Summary">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font>
-        </Label>
-
-        <!-- Stat Cards -->
-        <AnchorPane layoutX="30.0" layoutY="370.0" prefHeight="130.0" prefWidth="230.0" style="-fx-background-color: #F3F4F6; -fx-background-radius: 8;">
+        <!-- Task Action Buttons VBox -->
+        <VBox layoutX="160.0" layoutY="120.0" prefWidth="280.0" spacing="12.0">
             <children>
-                <Label layoutX="15.0" layoutY="15.0" text="Pending STRs" textFill="#666666">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <Label fx:id="pendingStrLabel" layoutX="15.0" layoutY="45.0" text="0 Reports" textFill="#2563EB">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
+                <Button fx:id="strButton" onAction="#handleStrAction" prefHeight="38.0" prefWidth="280.0" text="Review STR Reports" />
+                <Button fx:id="amlAlertsButton" onAction="#handleAmlAlertsAction" prefHeight="38.0" prefWidth="280.0" text="Investigate AML Alerts" />
+                <Button fx:id="fraudReportsButton" onAction="#handleFraudReportsAction" prefHeight="38.0" prefWidth="280.0" text="Fraud Detection Reports" />
+                <Button fx:id="investigationCasesButton" onAction="#handleInvestigationCasesAction" prefHeight="38.0" prefWidth="280.0" text="Manage Investigation Cases" />
+                <Button fx:id="riskProfilesButton" onAction="#handleRiskProfilesAction" prefHeight="38.0" prefWidth="280.0" text="Customer Risk Profiles" />
             </children>
-        </AnchorPane>
+        </VBox>
 
-        <AnchorPane layoutX="285.0" layoutY="370.0" prefHeight="130.0" prefWidth="230.0" style="-fx-background-color: #F3F4F6; -fx-background-radius: 8;">
-            <children>
-                <Label layoutX="15.0" layoutY="15.0" text="Critical AML Alerts" textFill="#666666">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <Label fx:id="criticalAmlLabel" layoutX="15.0" layoutY="45.0" text="0 Active" textFill="#DC2626">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-
-        <AnchorPane layoutX="540.0" layoutY="370.0" prefHeight="130.0" prefWidth="230.0" style="-fx-background-color: #F3F4F6; -fx-background-radius: 8;">
-            <children>
-                <Label layoutX="15.0" layoutY="15.0" text="Open Cases" textFill="#666666">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <Label fx:id="openCasesLabel" layoutX="15.0" layoutY="45.0" text="0 Cases" textFill="#059669">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-
-        <!-- Status Footer -->
-        <Label fx:id="statusLabel" layoutX="30.0" layoutY="555.0" text="Status: Financial Intelligence Unit Active" textFill="#059669">
+        <!-- Red Log Out Button -->
+        <Button fx:id="logoutButton" layoutX="245.0" layoutY="395.0" onAction="#handleLogoutAction" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #D9534F;" text="Log Out" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="13.0" />
             </font>
-        </Label>
-
+        </Button>
     </children>
 </AnchorPane>

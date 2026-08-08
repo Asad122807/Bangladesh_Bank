@@ -54,6 +54,16 @@ public class BeftnOperationsController {
 
     @FXML
     private void handleBackAction(ActionEvent event) {
-        System.out.println("Navigating back to Payment Systems Officer Dashboard...");
+        try {
+            java.net.URL dashboardUrl = getClass().getResource("/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asrar/PaymentSystemsOfficerDashboard.fxml");
+            javafx.scene.Parent root = javafx.fxml.FXMLLoader.load(dashboardUrl);
+            javafx.stage.Stage stage = (javafx.stage.Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Payment Systems Officer Dashboard");
+            stage.show();
+        } catch (java.io.IOException e) {
+            System.err.println("Error returning to Payment Systems Officer Dashboard.");
+            e.printStackTrace();
+        }
     }
 }

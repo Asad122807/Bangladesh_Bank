@@ -2,77 +2,94 @@ package com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class PaymentSystemsOfficerDashboardController {
-
-    @FXML private Label welcomeLabel;
-    @FXML private Button logoutButton;
 
     @FXML private Button rtgsButton;
     @FXML private Button beftnButton;
     @FXML private Button npsbButton;
     @FXML private Button discrepancyButton;
+    @FXML private Button downtimeButton;
+    @FXML private Button logoutButton;
 
-    @FXML private Label rtgsVolumeLabel;
-    @FXML private Label beftnBatchesLabel;
-    @FXML private Label discrepancyCountLabel;
-    @FXML private Label statusLabel;
-
-    /**
-     * Called automatically by JavaFX when the view initializes.
-     */
-    @FXML
-    public void initialize() {
-        // Initialize dashboard state or load summary stats
-        rtgsVolumeLabel.setText("BDT 45,200,000");
-        beftnBatchesLabel.setText("12 Batches");
-        discrepancyCountLabel.setText("2 Pending");
-    }
-
-    /**
-     * Handles navigation to RTGS Monitoring.
-     */
     @FXML
     private void handleRtgsAction(ActionEvent event) {
-        System.out.println("Navigating to RTGS.fxml...");
-        // TODO: Implement Scene switching code for RTGS.fxml
+        switchScene(event, "RTGS.fxml", "RTGS Transaction Monitoring");
     }
 
-    /**
-     * Handles navigation to BEFTN Operations.
-     */
     @FXML
     private void handleBeftnAction(ActionEvent event) {
-        System.out.println("Navigating to BEFTN.fxml...");
-        // TODO: Implement Scene switching code for BEFTN.fxml
+        switchScene(event, "BEFTN.fxml", "BEFTN Operations Monitoring");
     }
 
-    /**
-     * Handles navigation to NPSB Transactions.
-     */
     @FXML
     private void handleNpsbAction(ActionEvent event) {
-        System.out.println("Navigating to NPSB.fxml...");
-        // TODO: Implement Scene switching code for NPSB.fxml
+        switchScene(event, "NPSB.fxml", "NPSB Transaction Monitoring");
     }
 
-    /**
-     * Handles navigation to Settlement Discrepancy Resolution.
-     */
     @FXML
     private void handleDiscrepancyAction(ActionEvent event) {
-        System.out.println("Navigating to Discrepancy Resolution screen...");
-        // TODO: Implement Scene switching code for Discrepancy view
+        // Matches DisputeResolution.fxml in resources/Asrar/
+        switchScene(event, "DisputeResolution.fxml", "Discrepancy Resolution");
     }
 
-    /**
-     * Handles user logout.
-     */
+    @FXML
+    private void handleDowntimeAction(ActionEvent event) {
+        // Matches DowntimeMonitoring.fxml in resources/Asrar/
+        switchScene(event, "DowntimeMonitoring.fxml", "Downtime Monitoring");
+    }
+
     @FXML
     private void handleLogoutAction(ActionEvent event) {
-        System.out.println("Logging out Payment Systems Officer...");
-        // TODO: Switch scene back to Login screen
+        try {
+            String resourcePath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/hello-view.fxml";
+            URL loginUrl = getClass().getResource(resourcePath);
+
+            if (loginUrl == null) {
+                System.err.println("Could not find hello-view.fxml at: " + resourcePath);
+                return;
+            }
+
+            Parent root = FXMLLoader.load(loginUrl);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login");
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading Login screen.");
+            e.printStackTrace();
+        }
+    }
+
+    private void switchScene(ActionEvent event, String fxmlFile, String title) {
+        String resourcePath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asrar/" + fxmlFile;
+        URL fxmlUrl = getClass().getResource(resourcePath);
+
+        if (fxmlUrl == null) {
+            System.err.println("Could not locate FXML file: " + fxmlFile);
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading screen: " + fxmlFile);
+            e.printStackTrace();
+        }
     }
 }

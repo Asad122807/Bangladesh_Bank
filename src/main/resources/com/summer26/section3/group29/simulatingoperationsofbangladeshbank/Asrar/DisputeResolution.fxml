@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.DisputeResolutionController">
+    <children>
+        <!-- Title Header -->
+        <Label layoutX="205.0" layoutY="30.0" text="Discrepancy Resolution">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <!-- Search Section -->
+        <Label layoutX="40.0" layoutY="85.0" text="Dispute ID / Transaction Ref:" />
+        <TextField fx:id="searchTextField" layoutX="210.0" layoutY="81.0" prefHeight="26.0" prefWidth="250.0" promptText="Enter Dispute ID..." />
+        <Button layoutX="470.0" layoutY="81.0" onAction="#handleSearchAction" prefHeight="26.0" prefWidth="140.0" text="Search Dispute" />
+
+        <!-- Disputes Table -->
+        <TableView fx:id="disputeTableView" layoutX="40.0" layoutY="130.0" prefHeight="280.0" prefWidth="570.0">
+            <columns>
+                <TableColumn fx:id="disputeIdColumn" prefWidth="100.0" text="Dispute ID" />
+                <TableColumn fx:id="bankColumn" prefWidth="130.0" text="Bank Name" />
+                <TableColumn fx:id="amountColumn" prefWidth="110.0" text="Amount (BDT)" />
+                <TableColumn fx:id="typeColumn" prefWidth="120.0" text="Discrepancy Type" />
+                <TableColumn fx:id="statusColumn" prefWidth="108.0" text="Status" />
+            </columns>
+        </TableView>
+
+        <!-- Resolve Action Button -->
+        <Button layoutX="40.0" layoutY="430.0" onAction="#handleResolveAction" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #28a745;" text="Mark Resolved" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+        <!-- Back Button -->
+        <Button layoutX="530.0" layoutY="430.0" onAction="#handleBackAction" prefHeight="35.0" prefWidth="80.0" text="Back" />
+    </children>
+</AnchorPane>

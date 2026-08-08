@@ -60,6 +60,16 @@ public class InvestigationCaseController {
 
     @FXML
     private void handleBackAction(ActionEvent event) {
-        System.out.println("Navigating back to Financial Intelligence Officer Dashboard...");
+        try {
+            java.net.URL dashboardUrl = getClass().getResource("/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asrar/FinancialIntelligenceOfficerDashboard.fxml");
+            javafx.scene.Parent root = javafx.fxml.FXMLLoader.load(dashboardUrl);
+            javafx.stage.Stage stage = (javafx.stage.Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Financial Intelligence Officer Dashboard");
+            stage.show();
+        } catch (java.io.IOException e) {
+            System.err.println("Error returning to Financial Intelligence Officer Dashboard.");
+            e.printStackTrace();
+        }
     }
 }

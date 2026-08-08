@@ -2,73 +2,70 @@ package com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class DisputeResolutionController {
 
-    @FXML private TextField searchDisputeTextField;
-    @FXML private ComboBox<String> statusComboBox;
-    @FXML private Button filterButton;
-    @FXML private Button refreshButton;
-
-    @FXML private TableView<?> disputesTableView;
     @FXML private TableColumn<?, ?> disputeIdColumn;
-    @FXML private TableColumn<?, ?> txnIdColumn;
-    @FXML private TableColumn<?, ?> complainantBankColumn;
-    @FXML private TableColumn<?, ?> respondentBankColumn;
     @FXML private TableColumn<?, ?> amountColumn;
-    @FXML private TableColumn<?, ?> disputeStatusColumn;
-
-    @FXML private TextField resolutionNoteTextField;
-    @FXML private Button resolveDisputeButton;
-    @FXML private Button rejectDisputeButton;
-
-    @FXML private Label statusMessageLabel;
-    @FXML private Button backButton;
+    @FXML
+    private TableColumn statusColumn;
+    @FXML
+    private TableColumn bankColumn;
+    @FXML
+    private TableView disputeTableView;
+    @FXML
+    private TextField searchTextField;
+    @FXML
+    private TableColumn typeColumn;
 
     @FXML
-    public void initialize() {
-        if (statusComboBox != null) {
-            statusComboBox.getItems().addAll("All Statuses", "Pending Investigation", "Resolved", "Rejected");
-            statusComboBox.getSelectionModel().selectFirst();
-        }
+    private void handleSearchAction(ActionEvent event) {
+        String query = searchTextField.getText();
+        System.out.println("Searching for dispute: " + query);
     }
 
     @FXML
-    private void handleFilterAction(ActionEvent event) {
-        String query = searchDisputeTextField.getText();
-        String status = statusComboBox.getValue();
-        System.out.println("Filtering disputes - Query: " + query + ", Status: " + status);
-    }
-
-    @FXML
-    private void handleRefreshAction(ActionEvent event) {
-        System.out.println("Refreshing disputes list...");
-        searchDisputeTextField.clear();
-        statusComboBox.getSelectionModel().selectFirst();
-    }
-
-    @FXML
-    private void handleResolveDisputeAction(ActionEvent event) {
-        String note = resolutionNoteTextField.getText();
-        System.out.println("Resolving dispute with note: " + note);
-        statusMessageLabel.setText("Dispute marked as Resolved!");
-    }
-
-    @FXML
-    private void handleRejectDisputeAction(ActionEvent event) {
-        String note = resolutionNoteTextField.getText();
-        System.out.println("Rejecting dispute with note: " + note);
-        statusMessageLabel.setText("Dispute marked as Rejected!");
+    private void handleResolveAction(ActionEvent event) {
+        System.out.println("Resolving selected dispute...");
     }
 
     @FXML
     private void handleBackAction(ActionEvent event) {
-        System.out.println("Navigating back to Payment Systems Officer Dashboard...");
+        try {
+            URL dashboardUrl = getClass().getResource("/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asrar/PaymentSystemsOfficerDashboard.fxml");
+            Parent root = FXMLLoader.load(dashboardUrl);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Payment Systems Officer Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error returning to Payment Systems Officer Dashboard.");
+            e.printStackTrace();
+        }
+    }
+
+    @Deprecated
+    public void handleFilterAction(ActionEvent actionEvent) {
+    }
+
+    @Deprecated
+    public void handleRejectDisputeAction(ActionEvent actionEvent) {
+    }
+
+    @Deprecated
+    public void handleRefreshAction(ActionEvent actionEvent) {
+    }
+
+    @Deprecated
+    public void handleResolveDisputeAction(ActionEvent actionEvent) {
     }
 }
