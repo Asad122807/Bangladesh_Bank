@@ -10,45 +10,45 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class RtgsMonitoringController {
+public class NpsbMonitoringController {
 
-    @FXML private TextField searchBankTextField;
-    @FXML private ComboBox<String> statusComboBox;
+    @FXML private ComboBox<String> channelComboBox;
+    @FXML private TextField bankSearchTextField;
     @FXML private DatePicker transactionDatePicker;
     @FXML private Button filterButton;
     @FXML private Button refreshButton;
 
-    @FXML private TableView<?> rtgsTableView;
+    @FXML private TableView<?> npsbTableView;
     @FXML private TableColumn<?, ?> txnIdColumn;
-    @FXML private TableColumn<?, ?> senderBankColumn;
-    @FXML private TableColumn<?, ?> receiverBankColumn;
+    @FXML private TableColumn<?, ?> channelColumn;
+    @FXML private TableColumn<?, ?> issuerBankColumn;
+    @FXML private TableColumn<?, ?> acquirerBankColumn;
     @FXML private TableColumn<?, ?> amountColumn;
     @FXML private TableColumn<?, ?> statusColumn;
-    @FXML private TableColumn<?, ?> timestampColumn;
 
-    @FXML private Label totalTxnLabel;
+    @FXML private Label totalVolumeLabel;
     @FXML private Button backButton;
 
     @FXML
     public void initialize() {
-        if (statusComboBox != null) {
-            statusComboBox.getItems().addAll("All Statuses", "Completed", "Pending", "Failed");
-            statusComboBox.getSelectionModel().selectFirst();
+        if (channelComboBox != null) {
+            channelComboBox.getItems().addAll("All Channels", "ATM", "POS", "Internet Banking", "MFS Interoperability");
+            channelComboBox.getSelectionModel().selectFirst();
         }
     }
 
     @FXML
     private void handleFilterAction(ActionEvent event) {
-        String bank = searchBankTextField.getText();
-        String status = statusComboBox.getValue();
-        System.out.println("Filtering RTGS Transactions - Bank: " + bank + ", Status: " + status);
+        String channel = channelComboBox.getValue();
+        String bank = bankSearchTextField.getText();
+        System.out.println("Filtering NPSB - Channel: " + channel + ", Bank: " + bank);
     }
 
     @FXML
     private void handleRefreshAction(ActionEvent event) {
-        System.out.println("Refreshing RTGS data...");
-        searchBankTextField.clear();
-        statusComboBox.getSelectionModel().selectFirst();
+        System.out.println("Refreshing NPSB transaction data...");
+        channelComboBox.getSelectionModel().selectFirst();
+        bankSearchTextField.clear();
         transactionDatePicker.setValue(null);
     }
 

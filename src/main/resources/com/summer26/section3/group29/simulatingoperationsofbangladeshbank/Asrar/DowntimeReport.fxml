@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.DowntimeMonitoringController">
+    <children>
+
+        <!-- Header Title -->
+        <Label layoutX="200.0" layoutY="20.0" text="Payment System Downtime Report">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <!-- Filter & Search Controls -->
+        <Label layoutX="25.0" layoutY="75.0" text="System:" />
+        <ComboBox fx:id="systemTypeComboBox" layoutX="75.0" layoutY="71.0" prefWidth="120.0" promptText="All Systems" />
+
+        <Label layoutX="210.0" layoutY="75.0" text="Affected Bank:" />
+        <TextField fx:id="bankSearchTextField" layoutX="300.0" layoutY="71.0" prefWidth="130.0" promptText="Bank name..." />
+
+        <Label layoutX="445.0" layoutY="75.0" text="Outage Date:" />
+        <DatePicker fx:id="outageDatePicker" layoutX="525.0" layoutY="71.0" prefWidth="125.0" promptText="Select Date" />
+
+        <Button fx:id="filterButton" layoutX="660.0" layoutY="71.0" onAction="#handleFilterAction" text="Filter" />
+        <Button fx:id="refreshButton" layoutX="715.0" layoutY="71.0" onAction="#handleRefreshAction" style="-fx-background-color: #059669;" text="Refresh" textFill="WHITE" />
+
+        <!-- Downtime Logs Table -->
+        <TableView fx:id="downtimeTableView" layoutX="25.0" layoutY="115.0" prefHeight="420.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="incidentIdColumn" prefWidth="90.0" text="Incident ID" />
+                <TableColumn fx:id="systemNameColumn" prefWidth="110.0" text="System Name" />
+                <TableColumn fx:id="affectedBankColumn" prefWidth="140.0" text="Affected Bank" />
+                <TableColumn fx:id="startTimeColumn" prefWidth="140.0" text="Start Time" />
+                <TableColumn fx:id="durationColumn" prefWidth="120.0" text="Duration (Mins)" />
+                <TableColumn fx:id="recoveryStatusColumn" prefWidth="145.0" text="Recovery Status" />
+            </columns>
+        </TableView>
+
+        <!-- Bottom Status & Navigation -->
+        <Label fx:id="totalOutagesLabel" layoutX="25.0" layoutY="552.0" text="Total Outage Incidents: 0">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+
+        <Button fx:id="backButton" layoutX="640.0" layoutY="548.0" onAction="#handleBackAction" prefWidth="135.0" style="-fx-background-color: #DC2626;" text="Back to Dashboard" textFill="WHITE" />
+
+    </children>
+</AnchorPane>

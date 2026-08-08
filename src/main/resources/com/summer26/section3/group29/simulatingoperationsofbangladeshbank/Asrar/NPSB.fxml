@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.NpsbMonitoringController">
+    <children>
+
+        <!-- Header Title -->
+        <Label layoutX="225.0" layoutY="20.0" text="NPSB Transaction Monitoring">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <!-- Filter Controls -->
+        <Label layoutX="25.0" layoutY="75.0" text="Channel:" />
+        <ComboBox fx:id="channelComboBox" layoutX="80.0" layoutY="71.0" prefWidth="120.0" promptText="All Channels" />
+
+        <Label layoutX="215.0" layoutY="75.0" text="Bank/Entity:" />
+        <TextField fx:id="bankSearchTextField" layoutX="290.0" layoutY="71.0" prefWidth="130.0" promptText="Enter bank name..." />
+
+        <Label layoutX="435.0" layoutY="75.0" text="Date:" />
+        <DatePicker fx:id="transactionDatePicker" layoutX="470.0" layoutY="71.0" prefWidth="130.0" promptText="Select Date" />
+
+        <Button fx:id="filterButton" layoutX="615.0" layoutY="71.0" onAction="#handleFilterAction" text="Filter" />
+        <Button fx:id="refreshButton" layoutX="675.0" layoutY="71.0" onAction="#handleRefreshAction" style="-fx-background-color: #059669;" text="Refresh" textFill="WHITE" />
+
+        <!-- NPSB Transactions Table -->
+        <TableView fx:id="npsbTableView" layoutX="25.0" layoutY="115.0" prefHeight="420.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="txnIdColumn" prefWidth="110.0" text="Transaction ID" />
+                <TableColumn fx:id="channelColumn" prefWidth="120.0" text="Channel (ATM/POS/IB)" />
+                <TableColumn fx:id="issuerBankColumn" prefWidth="135.0" text="Issuer Bank" />
+                <TableColumn fx:id="acquirerBankColumn" prefWidth="135.0" text="Acquirer Bank" />
+                <TableColumn fx:id="amountColumn" prefWidth="120.0" text="Amount (BDT)" />
+                <TableColumn fx:id="statusColumn" prefWidth="130.0" text="Status" />
+            </columns>
+        </TableView>
+
+        <!-- Bottom Bar & Navigation -->
+        <Label fx:id="totalVolumeLabel" layoutX="25.0" layoutY="552.0" text="Total Transaction Volume: 0 BDT">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+
+        <Button fx:id="backButton" layoutX="640.0" layoutY="548.0" onAction="#handleBackAction" prefWidth="135.0" style="-fx-background-color: #DC2626;" text="Back to Dashboard" textFill="WHITE" />
+
+    </children>
+</AnchorPane>

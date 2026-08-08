@@ -13,14 +13,14 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.RtgsMonitoringController">
     <children>
 
-        <!-- Top Title Label -->
+
         <Label layoutX="240.0" layoutY="20.0" text="RTGS Transaction Monitoring">
             <font>
                 <Font name="System Bold" size="22.0" />
             </font>
         </Label>
 
-        <!-- Search Controls -->
+
         <Label layoutX="25.0" layoutY="75.0" text="Search Bank:" />
         <TextField fx:id="searchBankTextField" layoutX="105.0" layoutY="71.0" prefWidth="140.0" promptText="Enter bank name..." />
 
@@ -33,7 +33,7 @@
         <Button fx:id="filterButton" layoutX="620.0" layoutY="71.0" onAction="#handleFilterAction" text="Filter" />
         <Button fx:id="refreshButton" layoutX="680.0" layoutY="71.0" onAction="#handleRefreshAction" style="-fx-background-color: #059669;" text="Refresh" textFill="WHITE" />
 
-        <!-- RTGS Table View -->
+
         <TableView fx:id="rtgsTableView" layoutX="25.0" layoutY="115.0" prefHeight="420.0" prefWidth="750.0">
             <columns>
                 <TableColumn fx:id="txnIdColumn" prefWidth="110.0" text="Transaction ID" />
@@ -45,7 +45,7 @@
             </columns>
         </TableView>
 
-        <!-- Bottom Status & Back Button -->
+
         <Label fx:id="totalTxnLabel" layoutX="25.0" layoutY="552.0" text="Total Transactions: 0">
             <font>
                 <Font name="System Bold" size="13.0" />
