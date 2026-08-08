@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.CustomerRiskProfileController">
+    <children>
 
+        <!-- Header Title -->
+        <Label layoutX="245.0" layoutY="20.0" text="Customer Risk Profiles">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <!-- Filter Controls -->
+        <Label layoutX="25.0" layoutY="75.0" text="Customer ID:" />
+        <TextField fx:id="customerIdTextField" layoutX="105.0" layoutY="71.0" prefWidth="120.0" promptText="Enter ID..." />
+
+        <Label layoutX="240.0" layoutY="75.0" text="Risk Category:" />
+        <ComboBox fx:id="riskCategoryComboBox" layoutX="325.0" layoutY="71.0" prefWidth="110.0" promptText="All Categories" />
+
+        <Label layoutX="450.0" layoutY="75.0" text="Date:" />
+        <DatePicker fx:id="profileDatePicker" layoutX="485.0" layoutY="71.0" prefWidth="120.0" promptText="Select Date" />
+
+        <Button fx:id="filterButton" layoutX="615.0" layoutY="71.0" onAction="#handleFilterAction" text="Filter" />
+        <Button fx:id="refreshButton" layoutX="675.0" layoutY="71.0" onAction="#handleRefreshAction" style="-fx-background-color: #059669;" text="Refresh" textFill="WHITE" />
+
+        <!-- Customer Risk Profiles Table View -->
+        <TableView fx:id="riskProfilesTableView" layoutX="25.0" layoutY="115.0" prefHeight="420.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="customerIdColumn" prefWidth="100.0" text="Customer ID" />
+                <TableColumn fx:id="customerNameColumn" prefWidth="150.0" text="Customer Name" />
+                <TableColumn fx:id="bankNameColumn" prefWidth="140.0" text="Associated Bank" />
+                <TableColumn fx:id="riskRatingColumn" prefWidth="110.0" text="Risk Rating" />
+                <TableColumn fx:id="kycStatusColumn" prefWidth="110.0" text="KYC Status" />
+                <TableColumn fx:id="lastUpdatedColumn" prefWidth="135.0" text="Last Updated" />
+            </columns>
+        </TableView>
+
+        <!-- Bottom Status & Actions -->
+        <Label fx:id="totalProfilesLabel" layoutX="25.0" layoutY="552.0" text="Total Customer Profiles: 0">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+
+        <Button fx:id="viewProfileButton" layoutX="485.0" layoutY="548.0" onAction="#handleViewProfileAction" prefWidth="140.0" style="-fx-background-color: #2563EB;" text="View Risk Profile" textFill="WHITE" />
+        <Button fx:id="backButton" layoutX="640.0" layoutY="548.0" onAction="#handleBackAction" prefWidth="135.0" style="-fx-background-color: #DC2626;" text="Back to Dashboard" textFill="WHITE" />
+
+    </children>
 </AnchorPane>

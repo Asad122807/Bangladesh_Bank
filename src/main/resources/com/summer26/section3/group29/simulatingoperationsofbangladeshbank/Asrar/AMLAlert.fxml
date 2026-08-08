@@ -13,14 +13,14 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asrar.AmlAlertsController">
     <children>
 
-        <!-- Header Title -->
+
         <Label layoutX="190.0" layoutY="20.0" text="Money Laundering Alerts Investigation">
             <font>
                 <Font name="System Bold" size="22.0" />
             </font>
         </Label>
 
-        <!-- Filter Controls -->
+
         <Label layoutX="25.0" layoutY="75.0" text="Alert ID:" />
         <TextField fx:id="alertIdTextField" layoutX="80.0" layoutY="71.0" prefWidth="120.0" promptText="Enter Alert ID..." />
 
@@ -33,7 +33,7 @@
         <Button fx:id="filterButton" layoutX="605.0" layoutY="71.0" onAction="#handleFilterAction" text="Filter" />
         <Button fx:id="refreshButton" layoutX="665.0" layoutY="71.0" onAction="#handleRefreshAction" style="-fx-background-color: #059669;" text="Refresh" textFill="WHITE" />
 
-        <!-- AML Alerts Table View -->
+
         <TableView fx:id="amlAlertsTableView" layoutX="25.0" layoutY="115.0" prefHeight="420.0" prefWidth="750.0">
             <columns>
                 <TableColumn fx:id="alertIdColumn" prefWidth="90.0" text="Alert ID" />
@@ -45,7 +45,7 @@
             </columns>
         </TableView>
 
-        <!-- Bottom Bar & Action Buttons -->
+
         <Label fx:id="totalAlertsLabel" layoutX="25.0" layoutY="552.0" text="Total Active Alerts: 0">
             <font>
                 <Font name="System Bold" size="13.0" />
