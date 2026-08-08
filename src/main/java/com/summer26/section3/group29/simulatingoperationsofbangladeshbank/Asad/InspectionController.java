@@ -1,11 +1,14 @@
 package com.summer26.section3.group29.simulatingoperationsofbangladeshbank.Asad;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -13,11 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class InspectionController {
-
-
+public class InspectionController implements Initializable {
 
     @FXML
     private ComboBox<String> bankComboBox;
@@ -34,56 +37,30 @@ public class InspectionController {
     @FXML
     private TextArea remarksArea;
 
-
-    @FXML
-    public void initialize() {
-
-        bankComboBox.getItems().addAll(
-                "Sonali Bank",
-                "Janata Bank",
-                "Agrani Bank",
-                "Rupali Bank",
-                "BRAC Bank",
-                "City Bank",
-                "Islami Bank"
-        );
-
-
-        categoryComboBox.getItems().addAll(
-                "Compliance Audit",
-                "Financial Health",
-                "Risk Management",
-                "Cybersecurity",
-                "Anti-Money Laundering (AML)"
-        );
+    public InspectionController() {
+        // Explicit public constructor required by JavaFX FXMLLoader
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Populate target commercial bank options
+        bankComboBox.setItems(FXCollections.observableArrayList(
+                "Sonali Bank PLC",
+                "Janata Bank PLC",
+                "Agrani Bank PLC",
+                "Pubali Bank PLC",
+                "BRAC Bank PLC",
+                "Dutch-Bangla Bank PLC"
+        ));
 
-    @FXML
-    void handleSubmitReport(ActionEvent event) {
-        String bank = bankComboBox.getValue();
-        String category = categoryComboBox.getValue();
-        LocalDate date = inspectionDate.getValue();
-        String inspector = inspectorField.getText();
-        String remarks = remarksArea.getText();
-
-
-        if (bank == null || category == null || date == null || inspector.trim().isEmpty() || remarks.trim().isEmpty()) {
-            System.out.println("Error: Please fill out all fields before submitting the inspection report.");
-            return;
-        }
-
-
-        System.out.println("--- Inspection Report Submitted ---");
-        System.out.println("Target Bank: " + bank);
-        System.out.println("Category: " + category);
-        System.out.println("Date: " + date);
-        System.out.println("Inspector ID: " + inspector);
-        System.out.println("Remarks: " + remarks);
-        System.out.println("-----------------------------------");
-
-
-        handleClearForm(event);
+        // Populate inspection categories
+        categoryComboBox.setItems(FXCollections.observableArrayList(
+                "Financial Audit",
+                "Regulatory Compliance",
+                "AML/CFT Verification",
+                "Risk Management Assessment",
+                "Special Inspection"
+        ));
     }
 
 
@@ -94,30 +71,68 @@ public class InspectionController {
         inspectionDate.setValue(null);
         inspectorField.clear();
         remarksArea.clear();
+    }
 
-        System.out.println("System: Inspection form cleared.");
+
+    @FXML
+    void handleSubmitReport(ActionEvent event) {
+        String selectedBank = bankComboBox.getValue();
+        String selectedCategory = categoryComboBox.getValue();
+        LocalDate date = inspectionDate.getValue();
+        String inspectorId = inspectorField.getText().trim();
+        String remarks = remarksArea.getText().trim();
+
+
+        if (selectedBank == null || selectedCategory == null || date == null || inspectorId.isEmpty() || remarks.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please fill in all fields before submitting the report.");
+            return;
+        }
+
+
+        System.out.println("--- Bank Inspection Report Submitted ---");
+        System.out.println("Target Bank: " + selectedBank);
+        System.out.println("Category: " + selectedCategory);
+        System.out.println("Date: " + date);
+        System.out.println("Inspector ID: " + inspectorId);
+        System.out.println("Remarks: " + remarks);
+
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Inspection report for " + selectedBank + " submitted successfully.");
+
+        handleClearForm(event);
     }
 
 
     @FXML
     void handleBackButton(ActionEvent event) {
-        try {
+        String path = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asad/DeputyGovernor.fxml";
+        URL fxmlUrl = getClass().getResource(path);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Governor.fxml"));
+        if (fxmlUrl == null) {
+            System.err.println("Error: Could not find DeputyGovernor.fxml at " + path);
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Dashboard");
+            stage.setTitle("Deputy Governor Dashboard");
             stage.show();
-
         } catch (IOException e) {
-            System.out.println("Error: Could not load the previous screen.");
+            System.err.println("Error navigating back to Deputy Governor Dashboard.");
             e.printStackTrace();
         }
+    }
+
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

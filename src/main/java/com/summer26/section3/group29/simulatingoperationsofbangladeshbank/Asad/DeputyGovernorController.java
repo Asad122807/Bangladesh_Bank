@@ -13,6 +13,10 @@ import java.net.URL;
 
 public class DeputyGovernorController {
 
+    public DeputyGovernorController() {
+        // Explicit public no-arg constructor required by FXMLLoader
+    }
+
     @FXML
     void handleCurrencyReport(ActionEvent event) {
         navigateToScreen(event, "CurrencyReport.fxml", "Currency Circulation Report");
@@ -20,7 +24,9 @@ public class DeputyGovernorController {
 
     @FXML
     void handleInspection(ActionEvent event) {
-        navigateToScreen(event, "Inspection.fxml", "Bank Inspection Report");
+        if (!navigateToScreen(event, "ComplianceReport.fxml", "Bank Inspection Report")) {
+            navigateToScreen(event, "Inspection.fxml", "Bank Inspection Report");
+        }
     }
 
     @FXML
@@ -32,11 +38,9 @@ public class DeputyGovernorController {
     void handleLogout(ActionEvent event) {
         System.out.println("System: Deputy Governor logging out...");
 
-        // Absolute path to the login FXML in the parent resources directory
         String loginPath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/hello-view.fxml";
         URL fxmlUrl = getClass().getResource(loginPath);
 
-        // Fallback check if your login file is named Login.fxml
         if (fxmlUrl == null) {
             loginPath = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Login.fxml";
             fxmlUrl = getClass().getResource(loginPath);
@@ -57,19 +61,18 @@ public class DeputyGovernorController {
             stage.setTitle("Login");
             stage.show();
         } catch (IOException e) {
-            System.err.println("Error: Failed to load login screen.");
+            System.err.println("Error loading login screen:");
             e.printStackTrace();
         }
     }
 
-    private void navigateToScreen(ActionEvent event, String fxmlFile, String title) {
-        // Loads dashboard task views from inside the Asad folder
+    private boolean navigateToScreen(ActionEvent event, String fxmlFile, String title) {
         String path = "/com/summer26/section3/group29/simulatingoperationsofbangladeshbank/Asad/" + fxmlFile;
         URL fxmlUrl = getClass().getResource(path);
 
         if (fxmlUrl == null) {
-            System.err.println("Error: Unable to locate FXML at " + path);
-            return;
+            System.err.println("Notice: Resource not found at " + path);
+            return false;
         }
 
         try {
@@ -81,9 +84,11 @@ public class DeputyGovernorController {
             stage.setScene(scene);
             stage.setTitle(title);
             stage.show();
+            return true;
         } catch (IOException e) {
             System.err.println("Error loading screen: " + fxmlFile);
             e.printStackTrace();
+            return false;
         }
     }
 }
